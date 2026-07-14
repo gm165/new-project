@@ -1,266 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GM Tech Solutions · Bilingual Custom Dev</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3i Solution Replica | Professional IT Services</title>
+    <meta name="description" content="Custom software development, web solutions, and SEO services.">
     <style>
-        body {
-            transition: direction 0.3s ease, background 0.3s ease;
-            background: #f9fafc;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-        }
-        .hero-gradient {
-            background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
-        }
-        .shimmer {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-        }
-        .badge-pulse {
-            animation: pulse-soft 2s infinite;
-        }
-        @keyframes pulse-soft {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(0.96);
-            }
-        }
-        .lang-toggle {
-            transition: all 0.2s ease;
-        }
-        .lang-toggle:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
-        }
-        .feature-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.08);
-        }
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        /* Layout Structure */
+        header { padding: 20px; background: #fff; border-bottom: 1px solid #ddd; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Hero Section */
+        .hero { padding: 80px 20px; text-align: center; background: #f4f4f4; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        
+        /* Service Section */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 20px; }
+        .service-card { border: 1px solid #eee; padding: 20px; border-radius: 8px; transition: 0.3s; }
+        .service-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* RTL Support for Arabic */
+        [dir="rtl"] { text-align: right; }
     </style>
 </head>
-<body class="antialiased font-sans text-gray-800">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-100/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand -->
-            <div class="flex items-center gap-3 rtl:gap-3 rtl:flex-row-reverse">
-                <div class="w-10 h-10 shimmer rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-indigo-200">
-                    G
-                </div>
-                <span class="text-xl font-extrabold tracking-tight text-gray-900" data-en="GM Tech Solutions" data-ar="جي إم للحلول التقنية">GM Tech Solutions</span>
-                <span class="hidden sm:inline-block text-[10px] font-semibold uppercase tracking-widest text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-100/60">dev</span>
-            </div>
-
-            <!-- Right side -->
-            <div class="flex items-center gap-5 rtl:gap-5 rtl:flex-row-reverse">
-                <nav class="hidden md:flex items-center gap-6 rtl:gap-6 rtl:flex-row-reverse text-sm font-semibold text-gray-600">
-                    <a href="#" class="hover:text-indigo-600 transition border-b-2 border-transparent hover:border-indigo-400 pb-0.5" data-en="Home" data-ar="الرئيسية">Home</a>
-                    <a href="#" class="hover:text-indigo-600 transition border-b-2 border-transparent hover:border-indigo-400 pb-0.5" data-en="Services" data-ar="خدماتنا">Services</a>
-                    <a href="#" class="hover:text-indigo-600 transition border-b-2 border-transparent hover:border-indigo-400 pb-0.5" data-en="SEO Strategy" data-ar="خطة السيو">SEO Strategy</a>
-                </nav>
-
-                <!-- Language toggle -->
-                <button id="langSwitcher" class="lang-toggle inline-flex items-center bg-white text-indigo-700 font-semibold px-5 py-2.5 rounded-full border border-indigo-200/80 shadow-sm hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1 transition text-sm">
-                    <svg class="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2m4-3c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                    <span id="langLabel">العربية</span>
-                </button>
-            </div>
-        </div>
+    <!-- Header / Navbar -->
+    <header>
+        <nav>
+            <div class="logo">3i Replica</div>
+            <ul>
+                <li><a href="#">Home</a> | <a href="#">الرئيسية</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main hero -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 hero-gradient">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <h1>Expert IT & Software Solutions</h1>
+            <p>Empowering businesses with custom web and software development.</p>
+        </section>
 
-            <!-- Left: Hero content -->
-            <div class="space-y-7">
-                <div class="inline-flex items-center gap-2 rtl:gap-2 rtl:flex-row-reverse bg-emerald-50/90 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold border border-emerald-100/50">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-full badge-pulse"></span>
-                    <span data-en="Enterprise Ready" data-ar="جاهز للمشاريع الكبرى">Enterprise Ready</span>
-                </div>
-
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight" id="heroTitle">
-                    <span data-en="Custom Multi‑Language Websites Built for Results" data-ar="مواقع إلكترونية مخصصة ومتعددة اللغات مصممة لنتائج حقيقية">Custom Multi‑Language Websites Built for Results</span>
-                </h1>
-
-                <p class="text-lg text-gray-600 leading-relaxed max-w-lg" data-en="We deliver secure, rapid-loading custom solutions with natively integrated English and Arabic architectures, paired with absolute technical SEO precision." data-ar="نحن نقدم حلولاً برمجية مخصصة، آمنة وسريعة للغاية، تدعم اللغتين العربية والإنجليزية بشكل متكامل، مع تهيئة دقيقة لمعايير السيو التقني ومحركات البحث.">
-                    We deliver secure, rapid-loading custom solutions with natively integrated English and Arabic architectures, paired with absolute technical SEO precision.
-                </p>
-
-                <div class="pt-2 flex flex-wrap items-center gap-4">
-                    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-indigo-200/60 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200" data-en="Launch Project →" data-ar="ابدأ مشروعك الآن →">Launch Project →</a>
-                    <a href="#" class="bg-white/70 backdrop-blur-sm border border-gray-200/80 hover:bg-white text-gray-700 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 flex items-center gap-2" data-en="View SEO Roadmap" data-ar="عرض خطة السيو">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <span data-en="View SEO Roadmap" data-ar="عرض خطة السيو">View SEO Roadmap</span>
-                    </a>
-                </div>
-
-                <!-- Trust signals -->
-                <div class="flex items-center gap-6 pt-4 text-sm text-gray-500">
-                    <div class="flex items-center gap-1.5 rtl:gap-1.5 rtl:flex-row-reverse">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        <span data-en="SEO optimized" data-ar="محسّن للسيو">SEO optimized</span>
-                    </div>
-                    <div class="flex items-center gap-1.5 rtl:gap-1.5 rtl:flex-row-reverse">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        <span data-en="Native RTL/LTR" data-ar="دعم كامل للاتجاهين">Native RTL/LTR</span>
-                    </div>
-                    <div class="flex items-center gap-1.5 rtl:gap-1.5 rtl:flex-row-reverse">
-                        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                        <span data-en="100% Custom" data-ar="برمجية مخصصة بالكامل">100% Custom</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right: Feature card (upgraded) -->
-            <div class="feature-card bg-white border border-gray-200/60 p-8 rounded-3xl shadow-xl shadow-gray-200/40 space-y-6 relative overflow-hidden">
-                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-
-                <div class="flex items-center justify-between">
-                    <h3 class="text-xl font-bold text-gray-900" data-en="Technical Specifications" data-ar="المواصفات التقنية للهندسة البرمجية">Technical Specifications</h3>
-                    <span class="text-[10px] font-mono bg-gray-100 px-2 py-1 rounded-md text-gray-500">v2.0</span>
-                </div>
-
-                <div class="space-y-5">
-                    <!-- Item 1 -->
-                    <div class="flex items-start gap-4 rtl:gap-4 rtl:flex-row-reverse group">
-                        <div class="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl shrink-0 group-hover:bg-indigo-100 transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900" data-en="Native RTL / LTR Processing" data-ar="معالجة ذكية للاتجاهات">Native RTL / LTR Processing</h4>
-                            <p class="text-sm text-gray-500 mt-0.5 leading-relaxed" data-en="Dynamic DOM direction flipping with unified components styling." data-ar="قلب ديناميكي لاتجاه عناصر الـ DOM مع توحيد التنسيق.">Dynamic DOM direction flipping with unified components styling.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="flex items-start gap-4 rtl:gap-4 rtl:flex-row-reverse group">
-                        <div class="p-2.5 bg-purple-50 text-purple-600 rounded-xl shrink-0 group-hover:bg-purple-100 transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900" data-en="Built‑in Technical SEO" data-ar="هندسة السيو التقني المدمجة">Built‑in Technical SEO</h4>
-                            <p class="text-sm text-gray-500 mt-0.5 leading-relaxed" data-en="Proper hreflang tags injection for Google multi-language indexing accuracy." data-ar="إدخال دقيق لوسوم hreflang لضمان أرشفة صحيحة.">Proper hreflang tags injection for Google multi-language indexing accuracy.</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 – extra polish -->
-                    <div class="flex items-start gap-4 rtl:gap-4 rtl:flex-row-reverse group">
-                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl shrink-0 group-hover:bg-amber-100 transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900" data-en="Lightning Performance" data-ar="أداء فائق السرعة">Lightning Performance</h4>
-                            <p class="text-sm text-gray-500 mt-0.5 leading-relaxed" data-en="Optimized bundle, lazy loading & CDN-first delivery." data-ar="حزمة محسّنة، تحميل عند الطلب، وتسليم عبر شبكة CDN.">Optimized bundle, lazy loading &amp; CDN-first delivery.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- mini footer inside card -->
-                <div class="pt-2 border-t border-gray-100/80 flex justify-between items-center text-xs text-gray-400">
-                    <span data-en="✨ includes hreflang, sitemap, schema" data-ar="✨ يشمل hreflang، خريطة الموقع، ترميز البيانات">✨ includes hreflang, sitemap, schema</span>
-                    <span class="bg-indigo-50 px-2 py-0.5 rounded-full text-indigo-500 font-mono">AR/EN</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Extra row: trust / social proof (optional) -->
-        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-gray-200/60 pt-10 text-center">
-            <div>
-                <p class="text-2xl font-extrabold text-gray-800">100+</p>
-                <p class="text-sm text-gray-500" data-en="projects delivered" data-ar="مشروع منجَّز">projects delivered</p>
-            </div>
-            <div>
-                <p class="text-2xl font-extrabold text-gray-800">98%</p>
-                <p class="text-sm text-gray-500" data-en="client retention" data-ar="احتفاظ بالعملاء">client retention</p>
-            </div>
-            <div>
-                <p class="text-2xl font-extrabold text-gray-800">4.9★</p>
-                <p class="text-sm text-gray-500" data-en="average rating" data-ar="متوسط التقييم">average rating</p>
-            </div>
-            <div>
-                <p class="text-2xl font-extrabold text-gray-800">24/7</p>
-                <p class="text-sm text-gray-500" data-en="support" data-ar="دعم فني">support</p>
-            </div>
-        </div>
+        <!-- Services Section -->
+        <section class="services">
+            <article class="service-card">
+                <h3>Custom Web Development</h3>
+                <p>High-performance websites tailored to your business needs.</p>
+            </article>
+            <article class="service-card">
+                <h3>SEO Optimization</h3>
+                <p>Rank higher and reach your target audience globally.</p>
+            </article>
+            <article class="service-card">
+                <h3>Mobile Apps</h3>
+                <p>Native and cross-platform mobile solutions.</p>
+            </article>
+        </section>
     </main>
 
-    <!-- JavaScript: language switcher with smooth update -->
-    <script>
-        (function() {
-            const switcher = document.getElementById('langSwitcher');
-            const label = document.getElementById('langLabel');
-            const html = document.documentElement;
+    <!-- Footer -->
+    <footer>
+        <p style="text-align: center; padding: 20px;">© 2026 3i Replica. All rights reserved.</p>
+    </footer>
 
-            function setLanguage(lang) {
-                if (lang === 'ar') {
-                    html.setAttribute('dir', 'rtl');
-                    html.setAttribute('lang', 'ar');
-                    label.textContent = 'English';
-                } else {
-                    html.setAttribute('dir', 'ltr');
-                    html.setAttribute('lang', 'en');
-                    label.textContent = 'العربية';
-                }
-                // update all data-* elements
-                const elements = document.querySelectorAll('[data-en][data-ar]');
-                elements.forEach(el => {
-                    const text = lang === 'ar' ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-                    if (text) el.textContent = text;
-                });
-            }
-
-            // toggle
-            switcher.addEventListener('click', function(e) {
-                const current = html.getAttribute('dir') === 'rtl' ? 'ar' : 'en';
-                const next = current === 'ar' ? 'en' : 'ar';
-                setLanguage(next);
-            });
-
-            // init: set from html dir
-            const initDir = html.getAttribute('dir') || 'ltr';
-            const initLang = initDir === 'rtl' ? 'ar' : 'en';
-            setLanguage(initLang);
-        })();
-    </script>
-
-    <!-- tiny extra: hover effect on cards -->
 </body>
 </html>

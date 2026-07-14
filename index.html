@@ -1,71 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3i Solution Replica | Professional IT Services</title>
-    <meta name="description" content="Custom software development, web solutions, and SEO services.">
+    <title>3i Solution | IT Services & SEO Experts</title>
+    <meta name="description" content="Expert IT solution provider. We offer custom web development, SEO, and software services.">
+    
     <style>
-        /* Basic Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        /* General Styles */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; line-height: 1.6; }
         
-        /* Layout Structure */
-        header { padding: 20px; background: #fff; border-bottom: 1px solid #ddd; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .lang-btn { cursor: pointer; background: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 4px; }
+
         /* Hero Section */
-        .hero { padding: 80px 20px; text-align: center; background: #f4f4f4; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero { padding: 100px 5%; background: #f8f9fa; text-align: center; }
         
-        /* Service Section */
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 20px; }
-        .service-card { border: 1px solid #eee; padding: 20px; border-radius: 8px; transition: 0.3s; }
-        .service-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        
-        /* RTL Support for Arabic */
+        /* Services Grid */
+        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 50px 5%; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 10px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #007bff; }
+
+        /* RTL Specific styles */
+        [dir="rtl"] .navbar { flex-direction: row-reverse; }
         [dir="rtl"] { text-align: right; }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
-    <header>
-        <nav>
-            <div class="logo">3i Replica</div>
-            <ul>
-                <li><a href="#">Home</a> | <a href="#">الرئيسية</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="logo"><strong>3i SOLUTION</strong></div>
+        <button class="lang-btn" onclick="toggleLanguage()">English / العربية</button>
+    </nav>
 
-    <!-- Hero Section -->
-    <main>
-        <section class="hero">
-            <h1>Expert IT & Software Solutions</h1>
-            <p>Empowering businesses with custom web and software development.</p>
-        </section>
+    <section class="hero">
+        <h1 id="title">Empowering Your Digital Future</h1>
+        <p id="subtitle">Custom Web Development & SEO Services for Global Businesses.</p>
+    </section>
 
-        <!-- Services Section -->
-        <section class="services">
-            <article class="service-card">
-                <h3>Custom Web Development</h3>
-                <p>High-performance websites tailored to your business needs.</p>
-            </article>
-            <article class="service-card">
-                <h3>SEO Optimization</h3>
-                <p>Rank higher and reach your target audience globally.</p>
-            </article>
-            <article class="service-card">
-                <h3>Mobile Apps</h3>
-                <p>Native and cross-platform mobile solutions.</p>
-            </article>
-        </section>
-    </main>
+    <section class="services-container">
+        <article class="card">
+            <h3 id="serv1">Web Development</h3>
+            <p id="serv1-desc">Tailored web solutions for your growth.</p>
+        </article>
+        <article class="card">
+            <h3 id="serv2">SEO Strategy</h3>
+            <p id="serv2-desc">Get ranked on top with our expert SEO.</p>
+        </article>
+    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p style="text-align: center; padding: 20px;">© 2026 3i Replica. All rights reserved.</p>
-    </footer>
+    <script>
+        const translations = {
+            en: { title: "Empowering Your Digital Future", subtitle: "Custom Web Development & SEO Services.", serv1: "Web Development", serv1Desc: "Tailored web solutions for your growth.", serv2: "SEO Strategy", serv2Desc: "Get ranked on top with our expert SEO." },
+            ar: { title: "تمكين مستقبلك الرقمي", subtitle: "تطوير الويب المخصص وخدمات تحسين محركات البحث.", serv1: "تطوير الويب", serv1Desc: "حلول ويب مصممة خصيصًا لنمو أعمالك.", serv2: "استراتيجية تحسين محركات البحث", serv2Desc: "احصل على تصنيف أعلى مع خبراء SEO." }
+        };
 
+        function toggleLanguage() {
+            const html = document.getElementById('html-root');
+            const lang = html.dir === 'rtl' ? 'en' : 'ar';
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            html.lang = lang;
+            
+            // Update text
+            document.getElementById('title').innerText = translations[lang].title;
+            document.getElementById('subtitle').innerText = translations[lang].subtitle;
+            document.getElementById('serv1').innerText = translations[lang].serv1;
+            document.getElementById('serv1-desc').innerText = translations[lang].serv1Desc;
+            document.getElementById('serv2').innerText = translations[lang].serv2;
+            document.getElementById('serv2-desc').innerText = translations[lang].serv2Desc;
+        }
+    </script>
 </body>
 </html>

@@ -1,75 +1,882 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="html-root">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3i Solution | IT Services & SEO Experts</title>
-    <meta name="description" content="Expert IT solution provider. We offer custom web development, SEO, and software services.">
-    
-    <style>
-        /* General Styles */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; line-height: 1.6; }
-        
-        /* Navbar */
-        .navbar { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .lang-btn { cursor: pointer; background: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 4px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Touseef Visa Project — Application Tracking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0A1628;
+    --navy-900:#0F2138;
+    --navy-800:#16304F;
+    --gold-500:#C9A455;
+    --gold-300:#E4C878;
+    --paper:#F6F3EC;
+    --paper-dim:#EDE8DB;
+    --ink:#16233A;
+    --ink-soft:#4B5A72;
+    --teal-600:#2F6F62;
+    --teal-100:#DCEAE6;
+    --red-600:#B0402F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold-500);
+  }
+  ::selection{background:var(--gold-300);color:var(--navy-950);}
+  :focus-visible{outline:2px solid var(--gold-500);outline-offset:3px;}
 
-        /* Hero Section */
-        .hero { padding: 100px 5%; background: #f8f9fa; text-align: center; }
-        
-        /* Services Grid */
-        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 50px 5%; }
-        .card { border: 1px solid #ddd; padding: 20px; border-radius: 10px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: #007bff; }
+  /* Header */
+  header.site{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(10,22,40,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(201,164,85,0.25);
+  }
+  .header-inner{
+    max-width:1180px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px;color:var(--paper);text-decoration:none;}
+  .brand-mark{
+    width:38px;height:38px;border:1.5px solid var(--gold-500);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;color:var(--gold-300);font-size:1.1rem;
+    position:relative;
+  }
+  .brand-mark::after{
+    content:'';position:absolute;inset:4px;border:1px dashed rgba(228,200,120,0.5);border-radius:50%;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.05;}
+  .brand-text b{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;}
+  .brand-text span{font-size:0.65rem;letter-spacing:0.12em;color:var(--gold-300);text-transform:uppercase;}
+  nav.main-nav{display:flex;gap:4px;align-items:center;}
+  nav.main-nav a{
+    color:#CBD5E1;text-decoration:none;font-size:0.88rem;padding:9px 14px;border-radius:6px;
+    transition:.15s;
+  }
+  nav.main-nav a:hover{color:var(--paper);background:rgba(255,255,255,0.06);}
+  nav.main-nav a.active{color:var(--navy-950);background:var(--gold-500);font-weight:600;}
+  .nav-toggle{display:none;background:none;border:1px solid rgba(228,200,120,0.4);color:var(--paper);border-radius:6px;padding:8px 10px;}
 
-        /* RTL Specific styles */
-        [dir="rtl"] .navbar { flex-direction: row-reverse; }
-        [dir="rtl"] { text-align: right; }
-    </style>
+  main{padding-top:72px;}
+
+  /* Utility */
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .card{background:#fff;border:1px solid #E4DDCB;border-radius:14px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:600;font-size:0.92rem;padding:13px 24px;border-radius:8px;cursor:pointer;
+    border:1px solid transparent;transition:.15s;text-decoration:none;
+  }
+  .btn-gold{background:var(--gold-500);color:var(--navy-950);}
+  .btn-gold:hover{background:var(--gold-300);}
+  .btn-outline{background:transparent;border-color:rgba(228,200,120,0.55);color:var(--paper);}
+  .btn-outline:hover{background:rgba(228,200,120,0.1);}
+  .btn-navy{background:var(--navy-900);color:var(--paper);}
+  .btn-navy:hover{background:var(--navy-800);}
+  .btn-teal{background:var(--teal-600);color:#fff;}
+  .btn-teal:hover{background:#265c50;}
+  .btn-red{background:transparent;border-color:rgba(176,64,47,0.5);color:var(--red-600);}
+  .btn-red:hover{background:rgba(176,64,47,0.08);}
+  .btn:disabled{opacity:0.45;cursor:not-allowed;}
+
+  input[type=text]{
+    width:100%;background:#fff;border:1.5px solid #D8D0BC;border-radius:8px;
+    padding:13px 14px;font-family:'IBM Plex Mono',monospace;font-size:0.95rem;color:var(--ink);
+  }
+  input[type=text]:focus{border-color:var(--gold-500);}
+  label.field-label{
+    display:block;font-size:0.78rem;font-weight:600;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;
+  }
+
+  /* Hero */
+  .hero{
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(228,200,120,0.14), transparent 55%),
+      linear-gradient(180deg,var(--navy-950),var(--navy-900) 70%,var(--navy-900));
+    color:var(--paper);position:relative;overflow:hidden;
+    padding:74px 0 96px;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;opacity:0.06;
+    background-image:radial-gradient(circle,var(--gold-300) 1px,transparent 1.4px);
+    background-size:26px 26px;pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;position:relative;}
+  .stamp-seal{
+    width:150px;height:150px;border-radius:50%;border:2px solid var(--gold-500);
+    display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:26px;
+    animation:stampIn .7s cubic-bezier(.2,1.4,.4,1);
+  }
+  .stamp-seal::before{content:'';position:absolute;inset:8px;border:1px dashed rgba(228,200,120,0.55);border-radius:50%;}
+  .stamp-seal .txt{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--gold-300);text-align:center;text-transform:uppercase;line-height:1.5;}
+  @keyframes stampIn{0%{transform:scale(1.5) rotate(-14deg);opacity:0;}100%{transform:scale(1) rotate(-8deg);opacity:1;}}
+  .hero h1{font-size:clamp(2.1rem,4.2vw,3.1rem);font-weight:600;line-height:1.08;margin:0 0 18px;}
+  .hero p.lead{color:#B9C4D6;font-size:1.05rem;line-height:1.65;max-width:46ch;margin:0 0 30px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap;}
+  .hero-stats .stat b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--gold-300);}
+  .hero-stats .stat span{font-size:0.74rem;color:#8FA0B8;text-transform:uppercase;letter-spacing:0.08em;}
+
+  /* Boarding-pass tracking card */
+  .pass-card{
+    background:var(--paper);border-radius:16px;color:var(--ink);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);position:relative;overflow:visible;
+  }
+  .pass-top{padding:26px 26px 22px;position:relative;}
+  .pass-top::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;
+    border-bottom:2px dashed #D8D0BC;
+  }
+  .pass-top::before,.pass-notch-r{content:'';position:absolute;bottom:-13px;width:26px;height:26px;background:var(--navy-950);border-radius:50%;}
+  .pass-top::before{left:-13px;}
+  .notch-r{position:absolute;bottom:-13px;right:-13px;width:26px;height:26px;background:var(--navy-950);border-radius:50%;}
+  .pass-eyebrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .pass-bottom{padding:24px 26px 28px;}
+  .field-row{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:16px;}
+  .track-result{margin-top:20px;}
+  .status-badge{
+    display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:100px;
+    font-size:0.78rem;font-weight:600;letter-spacing:0.02em;
+  }
+  .status-approved{background:var(--teal-100);color:var(--teal-600);}
+  .status-pending{background:#FBEFE3;color:#9A6420;}
+  .status-review{background:#EAEAF5;color:#4A4A8A;}
+  .status-notfound{background:#F7E4E0;color:var(--red-600);}
+  .timeline{list-style:none;margin:20px 0 0;padding:0;}
+  .timeline li{
+    position:relative;padding-left:28px;padding-bottom:20px;font-size:0.88rem;
+  }
+  .timeline li::before{
+    content:'';position:absolute;left:4px;top:3px;width:11px;height:11px;border-radius:50%;
+    background:#D8D0BC;border:2px solid #D8D0BC;
+  }
+  .timeline li::after{
+    content:'';position:absolute;left:9px;top:16px;bottom:0;width:1.5px;background:#E4DDCB;
+  }
+  .timeline li:last-child::after{display:none;}
+  .timeline li.done::before{background:var(--teal-600);border-color:var(--teal-600);}
+  .timeline li.current::before{background:var(--gold-500);border-color:var(--gold-500);box-shadow:0 0 0 4px rgba(201,164,85,0.25);}
+  .timeline li b{display:block;color:var(--ink);}
+  .timeline li span{color:var(--ink-soft);}
+
+  /* Sections generic */
+  section.page-section{padding:64px 0;}
+  .section-head{max-width:640px;margin:0 auto 44px;text-align:center;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);margin:10px 0 12px;}
+  .section-head p{color:var(--ink-soft);line-height:1.6;}
+
+  /* trust strip */
+  .trust-strip{background:var(--paper-dim);border-top:1px solid #E4DDCB;border-bottom:1px solid #E4DDCB;padding:26px 0;}
+  .trust-strip .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:var(--ink-soft);}
+  .trust-item svg{color:var(--teal-600);flex-shrink:0;}
+
+  /* Approval letter page */
+  .certificate{
+    background:#fff;border:1px solid #E4DDCB;border-radius:4px;padding:48px;position:relative;
+    box-shadow:0 20px 50px -25px rgba(16,35,58,0.3);
+  }
+  .certificate::before{
+    content:'';position:absolute;inset:14px;border:1.5px solid #D8D0BC;pointer-events:none;
+  }
+  .cert-watermark{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:5.5rem;color:rgba(16,35,58,0.035);
+    font-weight:700;transform:rotate(-18deg);pointer-events:none;letter-spacing:0.05em;white-space:nowrap;
+  }
+  .cert-seal{
+    width:92px;height:92px;border-radius:50%;border:2px solid var(--teal-600);
+    display:flex;align-items:center;justify-content:center;transform:rotate(-10deg);
+    color:var(--teal-600);font-family:'IBM Plex Mono',monospace;font-size:0.55rem;text-align:center;
+    letter-spacing:0.1em;text-transform:uppercase;line-height:1.4;
+  }
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid #E4DDCB;}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;padding:20px 4px;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-family:'Fraunces',serif;font-size:1.05rem;color:var(--ink);
+  }
+  .faq-q .plus{font-size:1.3rem;color:var(--gold-500);transition:.2s;flex-shrink:0;margin-left:16px;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{padding:0 4px 20px;color:var(--ink-soft);line-height:1.65;margin:0;max-width:68ch;}
+
+  /* Admin dashboard */
+  .admin-shell{background:var(--navy-950);min-height:calc(100vh - 72px);}
+  .admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+  .stat-card{
+    background:var(--navy-900);border:1px solid rgba(228,200,120,0.15);border-radius:12px;padding:20px;
+  }
+  .stat-card .eyebrow{color:#8FA0B8;}
+  .stat-card b{display:block;font-family:'Fraunces',serif;font-size:1.9rem;color:var(--paper);margin-top:6px;}
+  .stat-card .delta{font-size:0.78rem;color:var(--gold-300);margin-top:4px;display:block;}
+  .admin-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+  .admin-toolbar input[type=text]{max-width:280px;}
+  table.admin-table{width:100%;border-collapse:collapse;background:var(--navy-900);border-radius:12px;overflow:hidden;}
+  table.admin-table th{
+    text-align:left;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;
+    color:#8FA0B8;padding:14px 16px;border-bottom:1px solid rgba(228,200,120,0.15);font-weight:600;
+  }
+  table.admin-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.05);color:#DCE3ED;font-size:0.88rem;}
+  table.admin-table tr:last-child td{border-bottom:none;}
+  table.admin-table tr:hover td{background:rgba(255,255,255,0.02);}
+  .pay-toggle{
+    position:relative;width:44px;height:24px;border-radius:100px;background:#3A4B63;cursor:pointer;
+    border:none;transition:.2s;flex-shrink:0;
+  }
+  .pay-toggle::before{
+    content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+    background:#fff;transition:.2s;
+  }
+  .pay-toggle.on{background:var(--teal-600);}
+  .pay-toggle.on::before{transform:translateX(20px);}
+  .row-actions{display:flex;gap:8px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#DCE3ED;
+    width:32px;height:32px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.1);}
+  .icon-btn.danger:hover{background:rgba(176,64,47,0.2);color:#E88;}
+
+  /* footer */
+  footer.site-footer{background:var(--navy-950);color:#8FA0B8;padding:44px 0 30px;}
+  footer.site-footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center;}
+  footer.site-footer a{color:#B9C4D6;text-decoration:none;font-size:0.85rem;}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* Admin login gate */
+  .login-shell{
+    min-height:calc(100vh - 72px);background:var(--navy-950);display:flex;align-items:center;justify-content:center;
+    padding:60px 24px;position:relative;overflow:hidden;
+  }
+  .login-shell::before{
+    content:'';position:absolute;inset:0;opacity:0.05;
+    background-image:radial-gradient(circle,var(--gold-300) 1px,transparent 1.4px);
+    background-size:26px 26px;pointer-events:none;
+  }
+  .login-card{
+    width:100%;max-width:380px;background:var(--navy-900);border:1px solid rgba(228,200,120,0.2);
+    border-radius:14px;padding:36px 32px;position:relative;
+  }
+  .login-seal{
+    width:56px;height:56px;border-radius:50%;border:1.5px solid var(--gold-500);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
+    font-family:'Fraunces',serif;color:var(--gold-300);font-size:1.3rem;
+  }
+  .login-card h2{color:var(--paper);text-align:center;font-size:1.35rem;margin:0 0 6px;}
+  .login-card p.sub{color:#8FA0B8;text-align:center;font-size:0.85rem;margin:0 0 26px;}
+  .login-card label{color:#B9C4D6;}
+  .login-card input[type=text],.login-card input[type=password]{
+    background:var(--navy-950);border:1.5px solid rgba(228,200,120,0.2);color:var(--paper);
+  }
+  .login-card input[type=text]:focus,.login-card input[type=password]:focus{border-color:var(--gold-500);}
+  .login-error{
+    display:none;background:rgba(176,64,47,0.15);border:1px solid rgba(176,64,47,0.4);color:#F0A796;
+    font-size:0.82rem;padding:10px 12px;border-radius:8px;margin-bottom:16px;
+  }
+  .login-hint{color:#5E7191;font-size:0.76rem;text-align:center;margin-top:18px;}
+  .admin-topbar{
+    display:flex;justify-content:flex-end;padding:14px 0 0;
+  }
+  .admin-topbar button{background:none;border:none;color:#8FA0B8;font-size:0.82rem;cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .admin-topbar button:hover{color:var(--paper);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav.main-nav{
+      position:fixed;top:70px;left:0;right:0;background:var(--navy-950);flex-direction:column;
+      align-items:stretch;padding:10px 20px 20px;border-bottom:1px solid rgba(228,200,120,0.25);
+      display:none;
+    }
+    nav.main-nav.open{display:flex;}
+    nav.main-nav a{padding:12px 10px;}
+    .nav-toggle{display:block;}
+    .admin-stats{grid-template-columns:repeat(2,1fr);}
+    .certificate{padding:26px;}
+    table.admin-table{display:block;overflow-x:auto;white-space:nowrap;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo"><strong>3i SOLUTION</strong></div>
-        <button class="lang-btn" onclick="toggleLanguage()">English / العربية</button>
+<header class="site">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">T</span>
+      <span class="brand-text"><b>Touseef Visa Project</b><span>Application Tracking</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" data-nav="home">Track Application</a>
+      <a href="#approval" data-nav="approval">Approval Letter</a>
+      <a href="#faq" data-nav="faq">FAQs</a>
+      <a href="#privacy" data-nav="privacy">Privacy Policy</a>
+      <a href="#admin" data-nav="admin">Admin</a>
     </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
 
-    <section class="hero">
-        <h1 id="title">Empowering Your Digital Future</h1>
-        <p id="subtitle">Custom Web Development & SEO Services for Global Businesses.</p>
-    </section>
+<main>
 
-    <section class="services-container">
-        <article class="card">
-            <h3 id="serv1">Web Development</h3>
-            <p id="serv1-desc">Tailored web solutions for your growth.</p>
-        </article>
-        <article class="card">
-            <h3 id="serv2">SEO Strategy</h3>
-            <p id="serv2-desc">Get ranked on top with our expert SEO.</p>
-        </article>
-    </section>
+<!-- ===================== HOME / TRACKING ===================== -->
+<div class="page" id="page-home">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="stamp-seal">
+          <div class="txt">Verified<br>Records<br>★ Secure ★</div>
+        </div>
+        <div class="eyebrow">Encrypted &middot; Real-Time Status</div>
+        <h1>Track your visa application, from submission to approval.</h1>
+        <p class="lead">Enter your passport number and reference number to view your live status, payment confirmation, and download your approval letter the moment it's issued.</p>
+        <div class="hero-actions">
+          <a href="#faq" class="btn btn-outline">How tracking works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>12,480+</b><span>Applications processed</span></div>
+          <div class="stat"><b>256-bit</b><span>Encrypted transmission</span></div>
+          <div class="stat"><b>24/7</b><span>Status availability</span></div>
+        </div>
+      </div>
 
-    <script>
-        const translations = {
-            en: { title: "Empowering Your Digital Future", subtitle: "Custom Web Development & SEO Services.", serv1: "Web Development", serv1Desc: "Tailored web solutions for your growth.", serv2: "SEO Strategy", serv2Desc: "Get ranked on top with our expert SEO." },
-            ar: { title: "تمكين مستقبلك الرقمي", subtitle: "تطوير الويب المخصص وخدمات تحسين محركات البحث.", serv1: "تطوير الويب", serv1Desc: "حلول ويب مصممة خصيصًا لنمو أعمالك.", serv2: "استراتيجية تحسين محركات البحث", serv2Desc: "احصل على تصنيف أعلى مع خبراء SEO." }
-        };
+      <div class="pass-card">
+        <div class="pass-top">
+          <div class="notch-r"></div>
+          <div class="pass-eyebrow">
+            <span class="eyebrow" style="color:var(--gold-500)">Boarding&nbsp;Pass — Status Lookup</span>
+            <span class="mono" style="font-size:0.7rem;color:var(--ink-soft)">TVP-TRACK</span>
+          </div>
+          <form id="trackForm">
+            <div class="field-row">
+              <div>
+                <label class="field-label" for="passportNo">Passport Number</label>
+                <input type="text" id="passportNo" placeholder="e.g. AB1234567" autocomplete="off" required>
+              </div>
+              <div>
+                <label class="field-label" for="refNo">Reference Number</label>
+                <input type="text" id="refNo" placeholder="e.g. TVP-2026-00842" autocomplete="off" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gold" style="width:100%">Track Application</button>
+          </form>
+        </div>
+        <div class="pass-bottom">
+          <div id="trackEmpty" style="color:var(--ink-soft);font-size:0.88rem;line-height:1.6;">
+            Your result will appear here — including applicant name, current stage, payment status, and a download link once your approval letter is ready.
+          </div>
+          <div id="trackResult" class="track-result" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function toggleLanguage() {
-            const html = document.getElementById('html-root');
-            const lang = html.dir === 'rtl' ? 'en' : 'ar';
-            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            html.lang = lang;
-            
-            // Update text
-            document.getElementById('title').innerText = translations[lang].title;
-            document.getElementById('subtitle').innerText = translations[lang].subtitle;
-            document.getElementById('serv1').innerText = translations[lang].serv1;
-            document.getElementById('serv1-desc').innerText = translations[lang].serv1Desc;
-            document.getElementById('serv2').innerText = translations[lang].serv2;
-            document.getElementById('serv2-desc').innerText = translations[lang].serv2Desc;
-        }
-    </script>
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.7-8 10-4.6-1.3-8-5-8-10V6l8-4z"/></svg>
+        All data transmitted over encrypted connections
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Status updates in real time
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        Verified against your official file only
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container section-head">
+      <div class="eyebrow">Simple &amp; Secure</div>
+      <h2>Three steps to your status</h2>
+      <p>No account needed — your passport and reference number are your key.</p>
+    </div>
+    <div class="container" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="card" style="padding:28px;">
+        <div class="eyebrow">Step 01</div>
+        <h3 style="margin:10px 0 8px;font-size:1.15rem;">Enter your details</h3>
+        <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.6;margin:0;">Type your passport number and the reference number issued at submission.</p>
+      </div>
+      <div class="card" style="padding:28px;">
+        <div class="eyebrow">Step 02</div>
+        <h3 style="margin:10px 0 8px;font-size:1.15rem;">View live status</h3>
+        <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.6;margin:0;">See exactly where your file stands and whether payment has been confirmed.</p>
+      </div>
+      <div class="card" style="padding:28px;">
+        <div class="eyebrow">Step 03</div>
+        <h3 style="margin:10px 0 8px;font-size:1.15rem;">Download your letter</h3>
+        <p style="color:var(--ink-soft);font-size:0.92rem;line-height:1.6;margin:0;">Once approved, your official approval letter is ready to view and download.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== APPROVAL LETTER ===================== -->
+<div class="page" id="page-approval">
+  <section class="page-section" style="padding-top:52px;">
+    <div class="container section-head">
+      <div class="eyebrow">Official Document</div>
+      <h2>Your approval letter</h2>
+      <p>Once your application status is confirmed, your official approval letter appears below and can be downloaded as a PDF.</p>
+    </div>
+    <div class="container" style="max-width:760px;">
+      <div class="certificate">
+        <div class="cert-watermark">APPROVED</div>
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:30px;">
+          <div>
+            <div class="eyebrow" style="color:var(--teal-600)">Touseef Visa Project</div>
+            <h3 style="margin:6px 0 0;font-size:1.4rem;">Letter of Approval</h3>
+          </div>
+          <div class="cert-seal">Official<br>Seal<br>TVP</div>
+        </div>
+        <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px;">
+          <div>
+            <label class="field-label">Applicant Name</label>
+            <div class="mono" style="font-size:0.95rem;">Ayesha Bibi</div>
+          </div>
+          <div>
+            <label class="field-label">Reference No.</label>
+            <div class="mono" style="font-size:0.95rem;">TVP-2026-00842</div>
+          </div>
+          <div>
+            <label class="field-label">Passport No.</label>
+            <div class="mono" style="font-size:0.95rem;">AB1234567</div>
+          </div>
+          <div>
+            <label class="field-label">Date Issued</label>
+            <div class="mono" style="font-size:0.95rem;">17 July 2026</div>
+          </div>
+        </div>
+        <p style="position:relative;color:var(--ink-soft);line-height:1.7;font-size:0.94rem;">
+          This letter confirms that the above-named applicant's visa application has been reviewed and approved by Touseef Visa Project. This document may be presented as confirmation of approved status. For verification, please retain your reference number.
+        </p>
+        <div style="position:relative;display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;">
+          <button class="btn btn-teal">Download PDF</button>
+          <button class="btn btn-outline" style="color:var(--ink);border-color:#D8D0BC;">View Full Screen</button>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--ink-soft);font-size:0.82rem;margin-top:18px;">
+        Sample preview shown. Track your application on the Home page to view your own letter once approved.
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== PRIVACY POLICY ===================== -->
+<div class="page" id="page-privacy">
+  <section class="page-section" style="padding-top:52px;">
+    <div class="container" style="max-width:760px;">
+      <div class="eyebrow">Legal</div>
+      <h2 style="font-size:2rem;margin:10px 0 8px;">Privacy Policy</h2>
+      <p style="color:var(--ink-soft);margin-bottom:36px;">Last updated: 17 July 2026</p>
+
+      <div style="display:flex;flex-direction:column;gap:28px;color:var(--ink-soft);line-height:1.75;font-size:0.96rem;">
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">1. Information we collect</h3>
+          <p>We collect the information you provide when submitting a visa application, including your name, passport number, contact details, and supporting documents. When you use the tracking system, we process the passport and reference numbers you enter solely to retrieve your application status.</p>
+        </div>
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">2. How we use your information</h3>
+          <p>Your information is used to process your application, communicate updates, confirm payment status, and generate your approval letter. We do not sell or rent your personal data to third parties.</p>
+        </div>
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">3. Data security</h3>
+          <p>All data submitted through this website is transmitted using encrypted connections. Access to client records is restricted to authorized staff through the administrative dashboard.</p>
+        </div>
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">4. Data retention</h3>
+          <p>We retain application records for as long as necessary to fulfil the purpose they were collected for, and as required by applicable regulations.</p>
+        </div>
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">5. Your rights</h3>
+          <p>You may request access to, correction of, or deletion of your personal data by contacting our support team. Where applicable local regulations or GDPR apply, additional rights may be available to you.</p>
+        </div>
+        <div>
+          <h3 style="color:var(--ink);font-size:1.15rem;margin-bottom:8px;">6. Contact us</h3>
+          <p>For any privacy-related questions, please reach out through our support channels listed on the FAQs page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== FAQ ===================== -->
+<div class="page" id="page-faq">
+  <section class="page-section" style="padding-top:52px;">
+    <div class="container section-head">
+      <div class="eyebrow">Support</div>
+      <h2>Frequently asked questions</h2>
+      <p>Can't find what you're looking for? Reach out to our support team directly.</p>
+    </div>
+    <div class="container" style="max-width:720px;">
+      <div id="faqList"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== ADMIN DASHBOARD ===================== -->
+<div class="page" id="page-admin">
+
+  <!-- Login gate -->
+  <div class="login-shell" id="adminLoginShell">
+    <div class="login-card">
+      <div class="login-seal">T</div>
+      <h2>Admin Sign In</h2>
+      <p class="sub">Restricted area — Touseef Visa Project staff only</p>
+      <div class="login-error" id="loginError">Incorrect username or password.</div>
+      <form id="adminLoginForm">
+        <div style="margin-bottom:16px;">
+          <label class="field-label">Username</label>
+          <input type="text" id="adminUser" autocomplete="off" required>
+        </div>
+        <div style="margin-bottom:20px;">
+          <label class="field-label">Password</label>
+          <input type="password" id="adminPass" autocomplete="off" required>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;">Sign In</button>
+      </form>
+      <p class="login-hint">Demo credentials — admin / admin123. Will connect to your Laravel backend for real authentication.</p>
+    </div>
+  </div>
+
+  <!-- Dashboard (hidden until sign-in) -->
+  <div class="admin-shell" id="adminDashboard" style="display:none;">
+    <div class="container" style="padding-top:0;padding-bottom:60px;">
+      <div class="admin-topbar">
+        <button id="adminLogout">Sign out ↦</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:20px 0 28px;flex-wrap:wrap;gap:14px;">
+        <div>
+          <div class="eyebrow">Restricted Access</div>
+          <h2 style="color:var(--paper);font-size:1.7rem;margin:8px 0 0;">Administrative Dashboard</h2>
+        </div>
+        <button class="btn btn-gold">+ Add Client Record</button>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card">
+          <div class="eyebrow">Total Records</div>
+          <b>1,284</b>
+          <span class="delta">+64 this month</span>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow">Approved</div>
+          <b>972</b>
+          <span class="delta">75.7% of total</span>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow">Payment Pending</div>
+          <b>146</b>
+          <span class="delta" style="color:#E4A15C;">Needs follow-up</span>
+        </div>
+        <div class="stat-card">
+          <div class="eyebrow">Uploaded This Month</div>
+          <b>64</b>
+          <span class="delta">vs. 51 last month</span>
+        </div>
+      </div>
+
+      <div class="admin-toolbar">
+        <input type="text" id="adminSearch" placeholder="Search by name, passport or reference no.">
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline" style="color:var(--paper);border-color:rgba(228,200,120,0.4);">Export CSV</button>
+          <button class="btn btn-navy">Filter</button>
+        </div>
+      </div>
+
+      <table class="admin-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Passport No.</th>
+            <th>Reference No.</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>PDF</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="adminTbody"></tbody>
+      </table>
+      <p style="color:#8FA0B8;font-size:0.82rem;margin-top:16px;">
+        This dashboard is a front-end preview. Editing, deleting, and the payment toggle will connect to your database once the backend is built.
+      </p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="brand" style="color:var(--paper);">
+      <span class="brand-mark" style="width:32px;height:32px;font-size:0.95rem;">T</span>
+      <span style="font-family:'Fraunces',serif;">Touseef Visa Project</span>
+    </div>
+    <div class="foot-links">
+      <a href="#home">Track Application</a>
+      <a href="#faq">FAQs</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#admin">Admin</a>
+    </div>
+    <span style="font-size:0.8rem;color:#5E7191;">© 2026 Touseef Visa Project. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+// ---------- Routing ----------
+const pages = ['home','approval','privacy','faq','admin'];
+let adminAuthed = false;
+
+function route(){
+  const hash = (location.hash || '#home').replace('#','');
+  const target = pages.includes(hash) ? hash : 'home';
+  pages.forEach(p=>{
+    document.getElementById('page-'+p).classList.toggle('active', p===target);
+  });
+  document.querySelectorAll('[data-nav]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.nav===target);
+  });
+  document.getElementById('mainNav').classList.remove('open');
+  if(target==='admin') updateAdminView();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+window.addEventListener('hashchange', route);
+route();
+
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('mainNav').classList.toggle('open');
+});
+
+// ---------- Admin login gate ----------
+function updateAdminView(){
+  document.getElementById('adminLoginShell').style.display = adminAuthed ? 'none' : 'flex';
+  document.getElementById('adminDashboard').style.display = adminAuthed ? 'block' : 'none';
+  if(!adminAuthed){
+    document.getElementById('adminUser').value='';
+    document.getElementById('adminPass').value='';
+    document.getElementById('loginError').style.display='none';
+  }
+}
+document.getElementById('adminLoginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value.trim();
+  if(user==='admin' && pass==='admin123'){
+    adminAuthed = true;
+    updateAdminView();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
+});
+document.getElementById('adminLogout').addEventListener('click', function(){
+  adminAuthed = false;
+  updateAdminView();
+});
+
+// ---------- Tracking form (mock data) ----------
+const MOCK_RECORDS = {
+  'AB1234567|TVP-2026-00842': {
+    name:'Ayesha Bibi', status:'approved', payment:true,
+    stages:[
+      {label:'Application Submitted', date:'02 Jun 2026', state:'done'},
+      {label:'Documents Verified', date:'10 Jun 2026', state:'done'},
+      {label:'Under Review', date:'22 Jun 2026', state:'done'},
+      {label:'Approved', date:'17 Jul 2026', state:'done'}
+    ]
+  },
+  'CD9988771|TVP-2026-00913': {
+    name:'Muhammad Usman', status:'review', payment:false,
+    stages:[
+      {label:'Application Submitted', date:'28 Jun 2026', state:'done'},
+      {label:'Documents Verified', date:'05 Jul 2026', state:'done'},
+      {label:'Under Review', date:'Currently in progress', state:'current'},
+      {label:'Approved', date:'Pending', state:''}
+    ]
+  }
+};
+
+document.getElementById('trackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const pass = document.getElementById('passportNo').value.trim().toUpperCase();
+  const ref = document.getElementById('refNo').value.trim().toUpperCase();
+  const key = pass+'|'+ref;
+  const empty = document.getElementById('trackEmpty');
+  const result = document.getElementById('trackResult');
+  const record = MOCK_RECORDS[key];
+
+  if(!record){
+    empty.style.display='none';
+    result.style.display='block';
+    result.innerHTML = `
+      <span class="status-badge status-notfound">Not Found</span>
+      <p style="margin-top:14px;color:var(--ink-soft);font-size:0.9rem;line-height:1.6;">
+        We couldn't find a record matching that passport and reference number. Double-check both fields, or contact support if you believe this is an error.
+      </p>
+      <p style="margin-top:10px;font-size:0.78rem;color:var(--ink-soft);">Try the sample: <span class="mono">AB1234567</span> / <span class="mono">TVP-2026-00842</span></p>
+    `;
+    return;
+  }
+
+  const badgeClass = record.status==='approved' ? 'status-approved' : record.status==='review' ? 'status-review' : 'status-pending';
+  const badgeText = record.status==='approved' ? 'Approved' : record.status==='review' ? 'Under Review' : 'Pending';
+  const payBadge = record.payment
+    ? '<span class="status-badge status-approved">Payment Confirmed</span>'
+    : '<span class="status-badge status-pending">Payment Pending</span>';
+
+  let timelineHtml = '<ul class="timeline">';
+  record.stages.forEach(s=>{
+    timelineHtml += `<li class="${s.state}"><b>${s.label}</b><span>${s.date}</span></li>`;
+  });
+  timelineHtml += '</ul>';
+
+  empty.style.display='none';
+  result.style.display='block';
+  result.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:1.1rem;">${record.name}</div>
+        <div class="mono" style="font-size:0.76rem;color:var(--ink-soft);">${pass} &middot; ${ref}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+      <span class="status-badge ${badgeClass}">${badgeText}</span>
+      ${payBadge}
+    </div>
+    ${timelineHtml}
+    ${record.status==='approved'
+      ? `<a href="#approval" class="btn btn-teal" style="width:100%;margin-top:6px;">View Approval Letter (PDF)</a>`
+      : `<button class="btn btn-outline" style="width:100%;margin-top:6px;color:var(--ink);border-color:#D8D0BC;" disabled>PDF Available After Approval</button>`}
+  `;
+});
+
+// ---------- FAQ ----------
+const FAQS = [
+  {q:'How do I track my visa application?', a:'Go to the Home page and enter your passport number along with the reference number you received at submission. Your live status will appear instantly.'},
+  {q:'Why does my payment show as pending?', a:'Payment status is updated by our team once your payment is received and confirmed. If you\'ve already paid and it still shows pending after 24 hours, please contact support.'},
+  {q:'When can I download my approval letter?', a:'Your approval letter becomes available for download as soon as your application status changes to Approved and appears automatically on the Approval Letter page.'},
+  {q:'Is my personal information secure?', a:'Yes. All information you submit is transmitted over encrypted connections, and access to client records is restricted to authorized staff only.'},
+  {q:'I lost my reference number. What should I do?', a:'Contact our support team with your passport number and the details used at submission, and we\'ll help you retrieve it.'},
+  {q:'Can I edit my application details after submission?', a:'Minor corrections can be requested through support. Significant changes may require a new submission depending on your application stage.'}
+];
+const faqList = document.getElementById('faqList');
+FAQS.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className='faq-item';
+  div.innerHTML = `
+    <button class="faq-q" aria-expanded="false">
+      ${item.q}<span class="plus">+</span>
+    </button>
+    <div class="faq-a"><p>${item.a}</p></div>
+  `;
+  faqList.appendChild(div);
+  const btn = div.querySelector('.faq-q');
+  const panel = div.querySelector('.faq-a');
+  btn.addEventListener('click', ()=>{
+    const isOpen = div.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o=>{
+      o.classList.remove('open');
+      o.querySelector('.faq-a').style.maxHeight=null;
+      o.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      div.classList.add('open');
+      panel.style.maxHeight = panel.scrollHeight+'px';
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// ---------- Admin dashboard (mock) ----------
+let ADMIN_DATA = [
+  {name:'Ayesha Bibi', passport:'AB1234567', ref:'TVP-2026-00842', status:'Approved', payment:true, pdf:true},
+  {name:'Muhammad Usman', passport:'CD9988771', ref:'TVP-2026-00913', status:'Under Review', payment:false, pdf:false},
+  {name:'Sara Khan', passport:'EF5566223', ref:'TVP-2026-00874', status:'Approved', payment:true, pdf:true},
+  {name:'Bilal Ahmed', passport:'GH3321099', ref:'TVP-2026-00901', status:'Submitted', payment:false, pdf:false},
+  {name:'Hina Fatima', passport:'IJ7789456', ref:'TVP-2026-00888', status:'Approved', payment:false, pdf:true},
+  {name:'Tariq Mehmood', passport:'KL4432187', ref:'TVP-2026-00860', status:'Under Review', payment:true, pdf:false},
+];
+
+function statusClass(s){
+  if(s==='Approved') return 'status-approved';
+  if(s==='Under Review') return 'status-review';
+  return 'status-pending';
+}
+
+function renderAdminTable(filter=''){
+  const tbody = document.getElementById('adminTbody');
+  tbody.innerHTML='';
+  const f = filter.toLowerCase();
+  ADMIN_DATA
+    .filter(r => !f || r.name.toLowerCase().includes(f) || r.passport.toLowerCase().includes(f) || r.ref.toLowerCase().includes(f))
+    .forEach((r, idx)=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="color:#fff;font-weight:500;">${r.name}</td>
+        <td class="mono">${r.passport}</td>
+        <td class="mono">${r.ref}</td>
+        <td><span class="status-badge ${statusClass(r.status)}">${r.status}</span></td>
+        <td>
+          <button class="pay-toggle ${r.payment?'on':''}" data-idx="${idx}" title="Toggle payment status" aria-label="Toggle payment status"></button>
+          <span style="font-size:0.76rem;color:#8FA0B8;margin-left:8px;">${r.payment?'Paid':'Pending'}</span>
+        </td>
+        <td>${r.pdf ? '<span style="color:var(--gold-300);">Available</span>' : '<span style="color:#5E7191;">—</span>'}</td>
+        <td>
+          <div class="row-actions">
+            <button class="icon-btn" title="Edit">✎</button>
+            <button class="icon-btn danger" title="Delete">🗑</button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+  tbody.querySelectorAll('.pay-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.dataset.idx;
+      const record = ADMIN_DATA.filter(r => {
+        const f2 = document.getElementById('adminSearch').value.toLowerCase();
+        return !f2 || r.name.toLowerCase().includes(f2) || r.passport.toLowerCase().includes(f2) || r.ref.toLowerCase().includes(f2);
+      })[idx];
+      record.payment = !record.payment;
+      renderAdminTable(document.getElementById('adminSearch').value);
+    });
+  });
+}
+renderAdminTable();
+document.getElementById('adminSearch').addEventListener('input', (e)=> renderAdminTable(e.target.value));
+</script>
 </body>
 </html>
